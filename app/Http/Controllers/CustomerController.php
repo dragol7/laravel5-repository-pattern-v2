@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Criteria\Customer\IsActive;
 use App\Repositories\CustomerRepository;
 
 class CustomerController extends Controller
@@ -15,7 +16,8 @@ class CustomerController extends Controller
 	
 	public function index()
 	{
-		return $this->repo->all();
+		$criteria = new IsActive();
+		return $this->repo->getByCriteria($criteria)->all();
 	}
 
 }
